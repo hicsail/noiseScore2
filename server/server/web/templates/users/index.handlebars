@@ -1,0 +1,221 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    {{>dashboardNav}}
+    <div class="col-sm-9 col-md-10">
+      <div style="padding: 30px">
+        <h3>Users</h3>
+        {{#role user 'researcher'}}
+          <a class="btn btn-primary" href="/users/create">Create</a>
+        {{/role}}
+        <hr>
+        <div class="card">
+          <div style="padding: 20px">
+            <table id="userTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+              <tr>
+
+                <th>UserID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Year Born</th>
+                <th>Ethnicity</th>
+                <th>Sensitivity</th>
+                <th>Home Noise</th>
+                <th>Community Noise</th>
+                <th>Work Noise</th>
+                <th>Health Status</th>
+                <th>Weekday Percentages</th>
+                <th>Weekend Percentages</th>
+                <th>StudyID</th>
+                <th>Joined Study</th>
+                <th>Users Events</th>
+                {{#role user 'admin'}}
+                  <th>Users Clinicians</th>
+                  <th>ID</th>
+                  <th>Update Password</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                {{/role}}
+              </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var table;
+  var length;
+  $(document).ready(function () {
+    table = $('#userTable').DataTable({
+      initComplete: function(settings, json){
+         var info = this.api().page.info();
+         length = parseInt(info.recordsDisplay);
+      },
+      info: false,
+      processing: true,
+      serverSide: true,
+      scrollX: true,
+      paging: true,
+      pagingType: "full_numbers",
+      lengthMenu: [[10, 25, 50, length], [10, 25, 50, "All"]],
+      pageLength: 10,
+      scrollCollapse: true,
+      dom: 'Blfrtip',
+      buttons: [
+        { extend: 'csv', exportOptions: { modifier: { search: 'applied', order: 'applied' } } },
+        { extend: 'excel', exportOptions: { modifier: { search: 'applied', order: 'applied' } } },
+        { extend: 'pdf', exportOptions: { modifier: { search: 'applied', order: 'applied' } } },
+        { extend: 'print', exportOptions: { modifier: { search: 'applied', order: 'applied' } } },
+        'colvis'
+      ],
+      ajax: {
+        url: "/api/table/users",
+        data: function (d) {
+          d.fields = "_id name username email ethnicity year sensitive home community work health weekday weekend studyID timeCreated";
+        }
+      },
+      "columns": [
+        {
+          data: "_id",
+          defaultContent: ""
+        },
+        {
+          data: "name",
+          defaultContent: ""
+        },
+        {
+          data: "username",
+          defaultContent: ""
+        },
+        {
+          data: "email",
+          defaultContent: ""
+        },
+        {
+          data: "year",
+          defaultContent: ""
+        },
+        {
+          data: "ethnicity",
+          defaultContent: ""
+        },
+        {
+          data: "sensitive",
+          defaultContent: ""
+        },
+        {
+          data: "home",
+          defaultContent: ""
+        },
+        {
+          data: "community",
+          defaultContent: ""
+        },
+        {
+          data: "work",
+          defaultContent: ""
+        },
+        {
+          data: "health",
+          defaultContent: ""
+        },
+        {
+          data: 'weekday',
+          defaultContent: '',
+          render: function (data, type, row) {
+            if (data !== undefined) {
+              return '<span>' +
+                'Commuting:' + data['commuting'] + '\n' +
+                'School/Work:' + data['schoolWork'] + '\n' +
+                'Home:' + data['home'] + '\n' +
+                'Sleeping:' + data['sleeping'] + '\n' +
+                'Physical:' + data['physical'] + '\n' +
+                'Errands:' + data['errands'] +
+                '</span>';
+            }
+            return '<span></span>';
+          }
+        },
+        {
+          data: 'weekend',
+          defaultContent: '',
+          render: function (data, type, row) {
+            if (data !== undefined) {
+              return '<span>' +
+                'Commuting:' + data['commuting'] + '\n' +
+                'School/Work:' + data['schoolWork'] + '\n' +
+                'Home:' + data['home'] + '\n' +
+                'Sleeping:' + data['sleeping'] + '\n' +
+                'Physical:' + data['physical'] + '\n' +
+                'Errands:' + data['errands'] +
+                '</span>';
+            }
+            return '<span></span>';
+          }
+        },
+        {
+          data: "studyID",
+          render: function (data, type, row) {
+            if (row.studyID > 0) {
+              return row.studyID;
+            }
+            return '';
+          }
+        },
+        {
+          data: "timeCreated",
+          render: function (data, type, row) {
+            var date = new Date(row.timeCreated);
+            return date.toDateString() + ' ' + date.toLocaleTimeString('en-us');
+          }
+        },
+        {
+          data: "_id",
+          render: function (data, type, row) {
+            return '<button class="btn btn-secondary" onclick="viewUserEvent(\'' + row._id + '\')">View Events</button>';
+          }
+        },
+        {{#role user 'admin'}}
+          {
+            data: "_id",
+            render: function (data, type, row) {
+              return '<button class="btn btn-secondary" onclick="viewUserClinicians(\'' + row._id + '\')">Edit Clinicians</button>';
+            },
+            visible: false
+          },
+          {
+            data: "_id",
+            defaultContent: "",
+            visible: false
+          },
+          {
+            data: "_id",
+            render: function (data, type, row) {
+              return '<button class="btn btn-secondary" onclick="viewChangePassword(\'' + row._id + '\')">Change Password</button>';
+            },
+            visible: false
+          },
+          {
+            data: "_id",
+            render: function (data, type, row) {
+              return '<button class="btn btn-secondary" id="edit' + row._id + '" onclick="editDoc(\'' + row._id + '\')">Edit</button>';
+            },
+            visible: false
+          },
+          {
+            data: "_id",
+            render: function (data, type, row) {
+              return '<button class="btn btn-danger" id="delete' + row._id + '" onclick="deleteDoc(\'' + row._id + '\')">Delete</button>';
+            },
+            visible: false
+          }
+        {{/role}}
+      ]
+    });
+  });
+</script>
+<script type="text/javascript" src="/public/scripts/users/index.js"></script>
