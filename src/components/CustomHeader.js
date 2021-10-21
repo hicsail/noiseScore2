@@ -26,9 +26,7 @@ export default class CustomHeader extends React.Component {
                     : null
                 }
                 centerComponent={
-                    <TouchableOpacity onPress={() => {console.log('center')}}>
-                        <Image style={styles.image} source={require(`${assetsPath}/logo-white.png`)}/>
-                    </TouchableOpacity>
+                    <Image style={styles.image} source={require(`${assetsPath}/logo-white.png`)}/>
                 }
                 rightComponent={ this.props.showAccount ? // only show account if we need to show it
                     <View style={styles.headerRight}>
