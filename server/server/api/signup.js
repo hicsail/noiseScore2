@@ -33,8 +33,8 @@ internals.applyRoutes = function (server, next) {
           work: Joi.string(),
           health: Joi.string(),
           year: Joi.string(),
-          weekday: Joi.array(),
-          weekend: Joi.array()
+          weekday: Joi.array().optional(),
+          weekend: Joi.array().optional()
         }
       },
       pre: [{
@@ -127,10 +127,10 @@ internals.applyRoutes = function (server, next) {
           if (!healthArray.includes(request.payload.health)) {
             ret = ret + " + Problem with health";
           }
-          if (!request.payload.weekend.every(isBelowThreshold)) {
+          if (request.payload.weekend != null && !request.payload.weekend.every(isBelowThreshold)) {
             ret = ret + " + Problem with Weekend";
           }
-          if (!request.payload.weekday.every(isBelowThreshold)) {
+          if (request.payload.weekday != null && !request.payload.weekday.every(isBelowThreshold)) {
             ret = ret + " + Problem with Weekday";
           }
           if (ret.length > 1) {

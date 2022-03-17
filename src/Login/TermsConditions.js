@@ -113,8 +113,9 @@ export default class TermsConditions extends React.Component {
                                 and noise climate in not only your community but communities all over the globe.
 
                                 {'\n'}{'\n'}
-                                NoiseScore is currently being administered and managed by Community Noise Lab, a
-                                research lab at Boston University’s School of Public Health.
+                                NoiseScore is currently being administered by Community Noise Lab at the Brown University
+                                School of Public Health and is being developed and maintained by the Software and
+                                Application Innovation Lab at Boston University.
                                 <Text style={{fontWeight: 'bold'}}>
                                     By downloading and using this app, you are participating in a research study.
                                 </Text>
@@ -143,9 +144,8 @@ export default class TermsConditions extends React.Component {
                                 make you feel uncomfortable. Further, you are free to quit measuring a noise event
                                 or use the app at any time. If you chose to quit before submitting a noise event,
                                 none of your answers will be saved.
-                                This research project will last for two years. However, it may be extended, if
-                                permission to continue is given by Boston Medical Center and Boston University
-                                Medical Campus IRB.
+                                This research project is on-going with permission given by the Boston Medical Center
+                                and Boston University Medical Campus IRB.
 
                                 {'\n\n'}
                                 <Text style={styles.h3}>
@@ -215,7 +215,7 @@ export default class TermsConditions extends React.Component {
                                     Your Account
                                 </Text>
                                 {'\n\n'}
-                                When registering for NoiseScore, you will establish a personal NoiseScore E account with
+                                When registering for NoiseScore, you will establish a personal NoiseScore account with
                                 your own username and unique password. You agree to maintain the security of your user
                                 identification, password and other confidential information relating to the use of your
                                 NoiseScore account.
@@ -456,15 +456,13 @@ export default class TermsConditions extends React.Component {
                                     Questions
                                 </Text>
                                 {'\n\n'}
-                                Questions about this Privacy Policy should be directed to edw@bu.edu. The investigator
-                                or a
+                                Questions about this Privacy Policy should be directed to erica_walker@brown.edu.
+                                The investigator or a
                                 member of the research team will try to answer questions you may have about the research
-                                being conducted. If you have questions or concerns, or need to report an injury suffered
-                                while participating in this research, contact Erica Walker at 617-358-2439 or
-                                edw@bu.edu.
+                                being conducted. If you have questions or concerns or need to report an injury suffered
+                                while participating in this research, contact Erica Walker at 401 863 643.
                                 You may also contact the Boston Medical Center and Boston University Medical Campus IRB
-                                at
-                                617-358-5372 or email medirb@bu.edu. The IRB is a group that helps monitor research. You
+                                at 617-358-5372 or email medirb@bu.edu. The IRB is a group that helps monitor research. You
                                 should call or email the IRB if you want to find out about your rights as a research
                                 subject. You should also call or email if you want to talk to someone who is not part of
                                 the

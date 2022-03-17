@@ -33,6 +33,29 @@ class User extends MongoModels {
 
   static create(username, password, email, form, callback) {
     const self = this;
+    let weekday = null;
+    let weekend = null;
+    if (form[9] != null) {
+      weekday = {
+        commuting: form[9][0],
+          schoolWork: form[9][1],
+          home: form[9][2],
+          sleeping: form[9][3],
+          errands: form[10][4],
+          physical: form[9][5]
+      }
+    }
+
+    if (form[10] != null) {
+      weekend = {
+        commuting: form[10][0],
+          schoolWork: form[10][1],
+          home: form[10][2],
+          sleeping: form[10][3],
+          errands: form[10][4],
+          physical: form[9][5]
+      }
+    }
 
     Async.auto({
       passwordHash: this.generatePasswordHash.bind(this, password),
@@ -61,22 +84,8 @@ class User extends MongoModels {
           work: form[6],
           health: form[7],
           year: form[8],
-          weekday : {
-            commuting: form[9][0],
-            schoolWork: form[9][1],
-            home: form[9][2],
-            sleeping: form[9][3],
-            errands: form[10][4],
-            physical: form[9][5]
-          },
-          weekend : {
-            commuting: form[10][0],
-            schoolWork: form[10][1],
-            home: form[10][2],
-            sleeping: form[10][3],
-            errands: form[10][4],
-            physical: form[9][5]
-          }
+          weekday : weekday,
+          weekend : weekend
 
         };
 

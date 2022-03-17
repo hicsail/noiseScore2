@@ -98,7 +98,7 @@ export default class SignUp2 extends React.Component {
 
                 AsyncStorage.setItem("formData", JSON.stringify(response)).done();
             }.bind(this)).done(function () {
-                navigate('SignUp3');
+                navigate('TermsConditions');
             }.bind(this));
         }
     }
@@ -134,12 +134,11 @@ export default class SignUp2 extends React.Component {
                         {/* ------ Welcome and instructions text ------*/}
                         <View style={styles.wrapper}>
                             <Text style={[styles.text, styles.mainHeader]}>
-                                To complete your registration please answer the following questions
+                                To complete your registration, please tell us more about yourself!
                             </Text>
                             <Text style={[styles.text, styles.subText]}>
                                 Before you start using NoiseScore, we would like to gather a little more information
-                                about who you are, your attitudes about community noise and sound issues, your general
-                                health, and time activity during a typical week.
+                                about who you are and your perceptions about noise in your community.
                             </Text>
                         </View>
 
