@@ -44,6 +44,7 @@ export default class MeasureScreen3 extends React.Component {
         console.log('in submit function');
         const { navigate } = this.props.navigation;
         var success = true;
+        const thisRef = this;
 
         AsyncStorage.getItem('formData', null).then(function (ret) {
             var response = JSON.parse(ret);
@@ -68,37 +69,27 @@ export default class MeasureScreen3 extends React.Component {
                         .then(function (response1) {
                             AsyncStorage.setItem('refreshAccount', 'true');
                             // Done!
+                            Alert.alert(
+                                'Submitted Measurement',
+                                'Thanks for contributing to the project!',
+                                [
+                                    { text: 'Continue' },
+                                ],
+                                { cancelable: false },
+                            );
+                            thisRef.props.navigation.navigate('Measure0', {fromSubmit: true});
                         })
                         .catch(function (error) {
                             success = false;
                         });
                 }).catch(error => {
-                    Alert.alert('','Please allow NoiseScore to access your location.')
+                    success = false;
+                    Alert.alert('','Failed to record measurement. Please allow NoiseScore to access your location.');
+                    thisRef.props.navigation.navigate('Measure0', {fromSubmit: true});
                 });
 
             });
-        }.bind(this)).then(function () {
-            if (success) {
-                Alert.alert(
-                    'Submitted Measurement',
-                    'Thanks for contributing to the project!',
-                    [
-                        { text: 'Continue' },
-                    ],
-                    { cancelable: false },
-                );
-                // const resetAction = CommonActions.navigate('Measure0', {routeName:'Measure0', initial:true});
-                // const resetAction = StackActions.popToTop();
-                // const resetAction = StackActions.replace('Measure3', {
-                //     index: 0,
-                //     actions: [CommonActions.navigate({ routeName: 'Measure0' })],
-                // });
-                // this.props.navigation.dispatch(resetAction);
-                this.props.navigation.navigate('Measure0', {fromSubmit: true});
-            } else {
-                alert('Error');
-            }
-        }.bind(this));
+        }.bind(this)).then(function () {}.bind(this));
     }
 
 

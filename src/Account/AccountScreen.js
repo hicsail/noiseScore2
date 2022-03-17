@@ -3,7 +3,7 @@
 * * * * * */
 // react
 import React from 'react';
-import { StyleSheet, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Image, Text, TouchableOpacity } from 'react-native';
 import { Avatar, Header, ListItem } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -40,7 +40,7 @@ export default class AccountScreen extends React.Component {
         this.subs = [
             this.props.navigation.addListener('willFocus', () => this.updateData())
         ];
-        var self = this;
+        var self = this; // for 'this' scope change in callback
         // Get the information for the Account Screen
         AsyncStorage.getItem('userData').then(function (ret) {
             if (ret) {
@@ -76,17 +76,25 @@ export default class AccountScreen extends React.Component {
                 });
             }
         }.bind(this));
-    }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        let thisRef = this; // for 'this' scope change in callback
         AsyncStorage.getItem('refreshAccount').then(function (refresh) {
             if (refresh === 'true') {
-                thisRef.updateData();
+                self.updateData();
                 AsyncStorage.setItem('refreshAccount', 'false');
             }
         });
     }
+
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     let thisRef = this; // for 'this' scope change in callback
+    //     AsyncStorage.getItem('refreshAccount').then(function (refresh) {
+    //         console.log('ACCOUNT SCREEN - refresh account ', refresh);
+    //         if (refresh === 'true') {
+    //             thisRef.updateData();
+    //             AsyncStorage.setItem('refreshAccount', 'false');
+    //         }
+    //     });
+    // }
 
     async removeItemValue(key) {
         try {
@@ -256,68 +264,27 @@ export default class AccountScreen extends React.Component {
         }
     }
 
-    // reloadButton() {
-    //     // Simple function to reload the data
-    //     this.updateData();
-    //     this.forceUpdate();
-    // }
-    //
-    // accountPage() {
-    //     // Function to move to AccountPage.js
-    //     const { navigate } = this.props.navigation;
-    //     navigate("Account2");
-    // }
-
-//     backgroundImage={require(`${assetsPath}/logo-white.png`)}
-//     backgroundImageStyle={{resizeMode: 'center', justifyContent: 'center', marginTop:'20%'}}
-
-    account = () => {
-        const { navigate } = this.props.navigation;
-        navigate("Account2");
-    };
-
-    header = () => {
-        const { navigate } = this.props.navigation;
-        return <Header backgroundColor={constants.colors.brightGreen}
-                elevated={true}
-                centerContainerStyle={{height: 70}}
-        >
-            <TouchableOpacity
-                onPress={() => navigate('Account2')}
-            >
-                <Icon
-                    name="user-circle"
-                    size={0.09 * constants.width}
-                    color="white"
-                />
-            </TouchableOpacity>
-            <Image style={{ flex: 1, height: '8%', resizeMode: 'contain'}}
-                   source={require(`${assetsPath}/logo-white.png`)} />
-        </Header>;
-    };
-
     render() {
         const { username } = this.state;
         var data = this.state.userData;
         var list = this.generateData(data);
         return (
             <View style={styles.container}>
-                {/*{this.header()}*/}
                 <CustomHeader showAccount={true} showBack={false} navigation={this.props.navigation}/>
                 <ScrollView>
                     <View style={styles.container}>
-                        <ListItem
-                            key={1}
-                            leftAvatar={{ source: require(`${assetsPath}/medium.png`) }}
-                            // title={dateFormat(data['date'], "ddd, mmm dS, yyyy, h:MM TT")}
-                            subtitle={"25dB"}
-                            rightIcon={<Icon
-                                name="arrow-right"
-                                size={15}
-                                color="#323232"
-                            />}
-                        />
-                        {list}
+                        {data && data.length === 0 ?
+                            <Text style={{
+                                fontSize: constants.width / 18,
+                                textAlign: 'center',
+                                color: constants.colors.darkGray,
+                                fontWeight: 'bold',
+                                margin: 10
+                            }}>
+                                Go record some measurements!{"\n"} They will appear here when you do.
+                            </Text> :
+
+                            list}
                     </View>
                 </ScrollView>
             </View>
