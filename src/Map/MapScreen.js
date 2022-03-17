@@ -112,7 +112,12 @@ export default class MapScreen extends React.Component {
 
             }).catch(error => {
                 Alert.alert('', 'Please allow NoiseScore to access your location.');
-                console.log("Error when fetching location ")
+                console.log("Error when fetching location ", error);
+                thisRef.setState({
+                    region: defaultLoc,
+                }, () =>
+                    // ------ Initialize the heatmap view
+                    this.initHeatmap());
             });
         }
     }
@@ -622,13 +627,12 @@ export default class MapScreen extends React.Component {
                         provider={PROVIDER_GOOGLE}
                         // style={styles.map}
 
-                        initialRegion={this.state.region === null ? this.state.defaultLoc : this.state.region}
+                        initialRegion={this.state.region} // this is either set to default (Boston) or user loc depending on errors in getUserLocation()
                         moveOnMarkerPress={true}
                         showsUserLocation={true}
                         showsCompass={true}
                         showsPointsOfInterest={true}
                         showsMyLocationButton={true}
-                        // onPress={() => this.searchBarHandler()}
                         onRegionChangeComplete={(data) => {
                             // console.log("nrew region is ", data);
                             this.setState({region: data})
