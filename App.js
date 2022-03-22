@@ -11,7 +11,7 @@
 * * * * * */
 // react
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Image, LogBox, View } from 'react-native';
 import { NavigationContainer, StackActions, useNavigationState } from '@react-navigation/native';
 import { Header } from "react-native-elements";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -33,6 +33,7 @@ import { constants } from './src/constants';
 /* * * * *
   RENDER
 * * * * * */
+LogBox.ignoreLogs(['Warning: ...']);
 
 export function getHeader(rightComponent) {
     return {
