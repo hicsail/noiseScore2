@@ -1,4 +1,4 @@
-package com.noisescore;
+package edu.bu.noisescore;
 
 import com.facebook.react.ReactActivity;
 

@@ -1,4 +1,4 @@
-package com.noisescore;
+package edu.bu.noisescore;
 
 import android.app.Application;
 import android.content.Context;
