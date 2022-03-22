@@ -15,7 +15,7 @@
     "@react-native-community/slider": "^4.1.6",
     "@react-native-picker/picker": "^2.1.0",
     "@react-navigation/bottom-tabs": "^6.0.5",
-    "@react-navigation/native": "^6.0.2",
+    "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.1.0",
     "axios": "^0.21.4",
     "dateformat": "^4.5.1",
@@ -25,6 +25,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-floating-action": "^1.22.0",
     "react-native-geolocation-service": "^5.3.0-beta.2",
+    "react-native-gesture-handler": "^2.3.2",
     "react-native-keychain": "^7.0.0",
     "react-native-maps": "0.29.3",
     "react-native-picker-select": "^8.0.4",
@@ -36,7 +37,8 @@
     "react-native-svg-charts": "^5.4.0",
     "react-native-table-component": "^1.2.1",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-webview": "^11.13.0"
+    "react-native-webview": "^11.13.0",
+    "react-navigation": "^4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
