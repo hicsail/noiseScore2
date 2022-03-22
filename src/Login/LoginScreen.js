@@ -123,7 +123,7 @@ export default class LoginScreen extends React.Component {
 
             })
             .catch(function (error) {
-
+                console.log('LOGIN ERROR ', error);
                 Alert.alert("Invalid Credentials", "Your username or your password are incorrect. Try again.");
             });
     }

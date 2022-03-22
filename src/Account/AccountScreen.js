@@ -20,7 +20,7 @@ import CustomHeader from '../components/CustomHeader';
   RENDER
 * * * * * */
 const assetsPath  = '../../assets';
-export default class AccountScreen extends React.Component {
+class AccountScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,9 +37,11 @@ export default class AccountScreen extends React.Component {
         // Also make API call to get all the users measurements and save it as a local variable
 
         // this.props.navigation.setParams({ account: this.account });
-        this.subs = [
-            this.props.navigation.addListener('willFocus', () => this.updateData())
-        ];
+        // this.subs = [
+        //     this.props.navigation.addListener('willFocus', () => this.updateData())
+        // ];
+        this.focusListener = this.props.navigation.addListener('focus',
+            () => this.updateData());
         var self = this; // for 'this' scope change in callback
         // Get the information for the Account Screen
         AsyncStorage.getItem('userData').then(function (ret) {
@@ -77,12 +79,17 @@ export default class AccountScreen extends React.Component {
             }
         }.bind(this));
 
-        AsyncStorage.getItem('refreshAccount').then(function (refresh) {
-            if (refresh === 'true') {
-                self.updateData();
-                AsyncStorage.setItem('refreshAccount', 'false');
-            }
-        });
+        // AsyncStorage.getItem('refreshAccount').then(function (refresh) {
+        //     console.log('ACCOUNT refresh', refresh);
+        //     if (refresh === 'true') {
+        //         self.updateData();
+        //         AsyncStorage.setItem('refreshAccount', 'false');
+        //     }
+        // });
+    }
+
+    componentWillUnmount() {
+        this.focusListener();
     }
 
     // componentDidUpdate(prevProps, prevState, snapshot) {
@@ -307,3 +314,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#323232'
     }
 });
+
+
+export default AccountScreen;
