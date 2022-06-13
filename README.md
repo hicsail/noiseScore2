@@ -60,6 +60,7 @@ You can follow step-by-step instructions for the full process below:
 * If setting up this project for the first time, run `npm install`
 * Testing for iOS
     * Run `npx pod-install ios` to make sure that all the React Native packages are properly linked
+    * For M1 Macs users, run these commands instead: `sudo arch -x86_64 gem install ffi` and `arch -x86_64 pod install` 
     * Run `npm run ios` - this command should start running the NoiseScore app on an iPhone simulator and open a separate terminal window running the Metro bundler
 * Testing for Android
     * Tell your terminal where your ANDROID_HOME and ANDROID_ROOT_SDK are by running the following commands (the path should look something like `/Users/{your_username}/Library/Android/sdk`)
