@@ -111,7 +111,7 @@ export default class MapScreen extends React.Component {
                     this.initHeatmap())
 
             }).catch(error => {
-                Alert.alert('', 'Please allow NoiseScore to access your location.');
+                Alert.alert('', 'Please allow NoiseScore to access your location');
                 console.log("Error when fetching location ", error);
                 thisRef.setState({
                     region: defaultLoc,

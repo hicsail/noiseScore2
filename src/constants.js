@@ -38,7 +38,7 @@ const requestPermission = () => {
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
             'title': '',
-            'message': 'Please allow NoiseScore to access your location.'
+            'message': 'Please allow NoiseScore to access your location'
         }
     ).then(granted => {
         if(granted === PermissionsAndroid.RESULTS.GRANTED) {

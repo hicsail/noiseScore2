@@ -15,7 +15,7 @@ import { constants } from "../constants";
 /* * * * *
   RENDER
 * * * * * */
-export default class moreInfo extends React.Component {
+export default class MoreInfo extends React.Component {
 
     constructor(props) {
         super(props);

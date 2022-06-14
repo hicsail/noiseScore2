@@ -11,6 +11,7 @@ import axios from "axios";
 
 // local
 import { constants } from "../constants";
+import CustomButton from "../components/CustomButton";
 
 
 // export let authStatus = false;
@@ -77,6 +78,11 @@ export default class Splashscreen extends React.Component {
         )
     };
 
+    toUserLogin(){
+      this.props.navigation.navigate('UserLogin');
+    };
+
+
     async componentDidMount() {
         // Preload data from an external API
         // Preload data using AsyncStorage
@@ -105,6 +111,14 @@ export default class Splashscreen extends React.Component {
                             }}
                         />
                     </View>
+
+                      <CustomButton
+                        text= "Continue"
+                        customStyle={styles.buttonStyle}
+                        onPress= {() => this.toUserLogin()}
+                      />
+
+
                     <View style={{flex: 1, justifyContent: 'flex-end'}}>
                         <Image
                             source={require(`${assetsPath}/splash-image-transparent.png`)}
@@ -172,5 +186,10 @@ const styles = {
         // color: 'white',
         fontSize: 40,
         fontWeight: 'bold'
-    }
+    },
+    buttonStyle: {
+      justifyContent: "space-between",
+      alignSelf: 'stretch',
+      alignContent: 'center'
+    },
 };
