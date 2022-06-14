@@ -15,7 +15,7 @@ const LoginStack = createNativeStackNavigator();
 export default function Login() {
     return (
         <LoginStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false, gestureEnabled: false}}>
-            <LoginStack.Screen name="Login" component={LoginScreen}/>
+            <LoginStack.Screen name="Login" component={LoginScreen} options={{gestureEnabled: false,}}/>
             {/*<LoginStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>*/}
             <LoginStack.Screen name="SignUp" component={SignUp} />
             {/*<LoginStack.Screen name="SignUp" component={SignUp} options={getHeader(true)}/>*/}
