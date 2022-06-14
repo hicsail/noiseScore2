@@ -10,7 +10,7 @@ Icon.loadFont().then();
 
 import AccountPage from "./AccountPage";
 import AccountScreen from "./AccountScreen";
-import moreInfo from "./moreInfo";
+import MoreInfo from "./MoreInfo";
 import { constants } from "../constants";
 
 /* * * * *
@@ -27,7 +27,7 @@ export default function Account() {
             {/*<AccountStack.Screen name="Account1" component={AccountScreen} options={Account1NavOptions(navigation)}/>*/}
             <AccountStack.Screen name="Account2" component={AccountPage} />
             {/*<AccountStack.Screen name="Account2" component={AccountPage} options={getHeader(true)}/>*/}
-            <AccountStack.Screen name="Account3" component={moreInfo} />
+            <AccountStack.Screen name="Account3" component={MoreInfo} />
             {/*<AccountStack.Screen name="Account3" component={moreInfo} options={getHeader(true)}/>*/}
         </AccountStack.Navigator>
     );

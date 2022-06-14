@@ -1,5 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import 'react-native-gesture-handler';
 
 import LoginScreen from "./LoginScreen";
 import SignUp from "./SignUp";
@@ -13,8 +14,8 @@ import ResetPassword from "./ResetPassword";
 const LoginStack = createNativeStackNavigator();
 export default function Login() {
     return (
-        <LoginStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-            <LoginStack.Screen name="Login" component={LoginScreen} />
+        <LoginStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false, gestureEnabled: false}}>
+            <LoginStack.Screen name="Login" component={LoginScreen} options={{gestureEnabled: false,}}/>
             {/*<LoginStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>*/}
             <LoginStack.Screen name="SignUp" component={SignUp} />
             {/*<LoginStack.Screen name="SignUp" component={SignUp} options={getHeader(true)}/>*/}

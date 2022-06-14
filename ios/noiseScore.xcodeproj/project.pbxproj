@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* noiseScoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* noiseScoreTests.m */; };
+		0654A9596077114AF645DCFE /* libPods-noiseScore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBEF01AFA153B1A448D1A32 /* libPods-noiseScore.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -38,7 +39,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = noiseScore/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = noiseScore/main.m; sourceTree = "<group>"; };
 		1B5EBABD143AEF97C6D9A537 /* Pods-noiseScore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-noiseScore.debug.xcconfig"; path = "Target Support Files/Pods-noiseScore/Pods-noiseScore.debug.xcconfig"; sourceTree = "<group>"; };
-		38660AFFC8F0100C51CB883C /* libPods-noiseScore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-noiseScore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38660AFFC8F0100C51CB883C /* libPods-noiseScore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-noiseScore.a"; path = "/Users/hazimhalim/Library/Developer/Xcode/DerivedData/noiseScore-hgpzksjbkyzzwxftzmhniglxguur/Build/Products/Debug-iphoneos/libPods-noiseScore.a"; sourceTree = "<absolute>"; };
+		7BBEF01AFA153B1A448D1A32 /* libPods-noiseScore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-noiseScore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = noiseScore/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5366183A0720E7CED3BF643 /* Pods-noiseScore-noiseScoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-noiseScore-noiseScoreTests.debug.xcconfig"; path = "Target Support Files/Pods-noiseScore-noiseScoreTests/Pods-noiseScore-noiseScoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DFAA4B1F0DC9114E4A07AFF9 /* libPods-noiseScore-noiseScoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-noiseScore-noiseScoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B942F8B4FE42364D0388B932 /* libPods-noiseScore.a in Frameworks */,
+				0654A9596077114AF645DCFE /* libPods-noiseScore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +105,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				38660AFFC8F0100C51CB883C /* libPods-noiseScore.a */,
 				DFAA4B1F0DC9114E4A07AFF9 /* libPods-noiseScore-noiseScoreTests.a */,
+				7BBEF01AFA153B1A448D1A32 /* libPods-noiseScore.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,7 +204,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -430,13 +434,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5366183A0720E7CED3BF643 /* Pods-noiseScore-noiseScoreTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = noiseScoreTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,10 +462,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9DDD24BC7FD6F1F04A8281C /* Pods-noiseScore-noiseScoreTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = noiseScoreTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,7 +493,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9PYEKQ92GY;
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = noiseScore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,7 +523,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9PYEKQ92GY;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = noiseScore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -566,7 +576,8 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -631,7 +642,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
