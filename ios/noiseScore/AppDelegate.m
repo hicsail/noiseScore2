@@ -31,7 +31,7 @@ static void InitializeFlipper(UIApplication *application) {
 {
 
   NSURL *jsCodeLocation;
-  [GMSServices provideAPIKey:@"AIzaSyAfGO8M5ocLOiSV8CmPE-TRh8ifEXbtGqo"]; // add this line using the api key obtained from Google Console
+  [GMSServices provideAPIKey:@"GOOGLE_CLOUD_API_KEY"]; // add this line using the api key obtained from Google Console
   jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"];
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
