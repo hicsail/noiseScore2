@@ -65,8 +65,8 @@ export const constants = {
         brightGreen: "#31BD4B",
         darkGray: "#383838",
     },
-    IP_ADDRESS: (Platform.OS === 'ios') ? 'localhost:9000' : '10.0.2.2:9000',
-    // IP_ADDRESS: '3.12.168.21:9000', // AWS EC2 instance address, use for prod
+    //IP_ADDRESS: (Platform.OS === 'ios') ? 'localhost:9000' : '10.0.2.2:9000',
+    IP_ADDRESS: '3.12.168.21:9000', // AWS EC2 instance address, use for prod
     isAndroid: Platform.OS !== 'ios',
     isSignedIn: false,
     getCoordinates,
