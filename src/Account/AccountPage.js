@@ -113,6 +113,11 @@ export default class AccountPage extends React.Component {
                         text="Sign Out"
                         onPress={() => this.logout()}
                     />
+                    <CustomButton
+                        customStyle={styles.button}
+                        text="Delete Account"
+                        onPress={() => this.logout()}
+                    />
                 </View>
             </>
 
