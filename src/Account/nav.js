@@ -56,104 +56,10 @@ function Account1NavOptions(navigation) {
         headerStyle: {
             backgroundColor: constants.colors.brightGreen,
         }
-            // {/*<View style={{flex: 1, flexBasis: 500, justifyContent: 'space-evenly', backgroundColor: constants.colors.brightGreen}}>*/}
-            //
-            // {/*    <TouchableOpacity style={{*/}
-            // {/*        width: 0.15 * constants.width, height: constants.height / 12, marginLeft: '5%', marginTop: '5%',*/}
-            // {/*    }}*/}
-            // {/*                      onPress={() => navigation.navigate('Account2')}>*/}
-            //
-            // {/*        <Icon*/}
-            // {/*            name="user-circle"*/}
-            // {/*            size={0.09 * constants.width}*/}
-            // {/*            color="white"*/}
-            // {/*        />*/}
-            //
-            //
-            // {/*    </TouchableOpacity>*/}
-            //
-            // {/*    <Image*/}
-            // {/*        source={require(`${assetsPath}/logo-white.png`)}*/}
-            // {/*        style={{ height: constants.height / 10 - 10, resizeMode: 'center', marginRight: 75}}*/}
-            // {/*    />*/}
-            // {/*</View>,*/}
-
-            // height: 100,
+            
 
     }
-    // return {
-    //
-    //     headerTitleStyle: {
-    //         flex: 1,
-    //         height: null,
-    //
-    //         width: 0.7 * constants.width,
-    //         alignItems: 'center',
-    //         justifyContent: 'center',
-    //     },
-    //     headerTitle:() => <Image style={{ flex: 1, height: constants.height / 10 - 10, resizeMode: 'contain' }}
-    //                         source={require(`${assetsPath}/logo-white.png`)}
-    //     />,
-    //     headerStyle: {
-    //         height: constants.height / 10, backgroundColor: constants.colors.brightGreen
-    //     },
-    //     headerRightStyle: {
-    //         alignSelf: 'center',
-    //         textAlign: "center",
-    //         justifyContent: 'center',
-    //         flex: 1,
-    //         fontWeight: 'bold',
-    //         textAlignVertical: 'center',
-    //         backgroundColor: 'white'
-    //     },
-    //     headerRight: () =>
-    //         <View></View>,
-    //     headerLeft: () =>
-    //         <TouchableOpacity style={{
-    //             width: 0.15 * constants.width, height: constants.height / 12, margin: 5,
-    //             justifyContent: 'center', alignItems: 'center',
-    //         }}
-    //                           onPress={() => navigation.navigate('Account2')}>
-    //
-    //             <Icon
-    //                 name="user-circle"
-    //                 size={0.09 * constants.width}
-    //                 color="white"
-    //             />
-    //
-    //
-    //         </TouchableOpacity>,
-    //
-    //     headerTintColor: "white",
-    // };
-
-    // <div class = "container">
-    //   <div class = "flexCol"></div>
-    //   <div class = "flexCol" id = "smaller"></div>
-    // </div>
-    // CSS
-    //
-    // .container{
-    //    display: -webkit-box;
-    //     display: -ms-flexbox;
-    //     display: flex;
-    //   -ms-flex-flow: row nowrap;
-    //       flex-flow: row nowrap;
-    //       background: #fff;
-    //   width: 400px;
-    //   height: 200px;
-    // }
-    //
-    // .flexCol{
-    //   flex: 1 1 auto;
-    //   background: #f00;
-    // }
-    //
-    // #smaller{
-    //   flex: 2 1 auto;
-    //   background: #0f0;
-    //   height: 80%;
-    // }
+    
 }
 
 const styles = StyleSheet.create({
@@ -163,8 +69,6 @@ const styles = StyleSheet.create({
         backgroundColor: "aliceblue",
     },
     row: {
-        // flexBasis: 500,
-        // height: 50,
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: 'space-evenly',

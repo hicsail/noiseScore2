@@ -25,6 +25,7 @@ internals.applyRoutes = function (server, next) {
       }
     },
     handler: function (request, reply) {
+      //console.log(request);
       const credentials = request.auth.credentials || { session: {} };
       const session = credentials.session;
 
