@@ -708,8 +708,8 @@ internals.applyRoutes = function (server, next) {
     path: '/users/{id}',
     config: {
       auth: {
-        strategies: ['simple', 'jwt', 'session'],
-        scope: ['root', 'admin']
+        strategies: ['simple', 'jwt', 'session']
+        //might have to delete scope 
       },
       validate: {
         params: {
@@ -718,7 +718,7 @@ internals.applyRoutes = function (server, next) {
       }
     },
     handler: function (request, reply) {
-
+      console.log(request);
       User.findByIdAndDelete(request.params.id, (err, user) => {
 
         if (err) {

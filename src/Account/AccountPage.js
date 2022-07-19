@@ -3,7 +3,7 @@
 * * * * * */
 // react
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { useNavigation }
 
@@ -83,13 +83,14 @@ export default class AccountPage extends React.Component {
                 AccountPage.removeItemValue("userData").then(function (ret) {
                     if (ret) {
                         console.log('in second callback, ret =', ret);
-                        axios.delete('http://' + constants.IP_ADDRESS + '/api/logout', {headers: header})
+                        axios.delete('http://' + constants.IP_ADDRESS + '/api/logout', {headers : header})
                             .then(function () {
                                 navigate("UserLogin");
                             })
                             .catch(function (error) {
                                 console.log(error);
                                 alert("Something went wrong!");
+                                console.log(err);
                             });
                     } else {
                         alert("Error")
@@ -97,6 +98,45 @@ export default class AccountPage extends React.Component {
                 });
             }
         }.bind(this));
+    }
+
+    deleteAccount(){
+        const { navigate } =  this.props.navigation;
+        AsyncStorage.getItem('userData',null).then(function (ret) {
+            if(ret){
+                //console.log("Received response from callback: ", ret);
+                var response = JSON.parse(ret);
+                var user = response['user'];
+                var authHeader = response['authHeader'];
+                var userID = user["_id"];
+                console.log("User ID: ", response);
+                console.log("Type: ", typeof(userID));
+                const header = {
+                    'Content-Type': 'application/json',
+                    'Authorization': authHeader,
+                    'id' : userID,
+                };
+
+                if(userID == "000000000000000000000000"){
+                    console.log("Cannot delete root");
+                    return;
+                } else {
+                    axios.delete('http://' + constants.IP_ADDRESS + '/api/users/' + userID, {headers: header})
+                    .then(function () {
+                        console.log("Account deleted");
+                        navigate("UserLogin");
+                    })
+                    .catch(function (err) {
+                        Alert.alert("Something went wrong");
+                        console.log(err);
+                        return;
+                    });
+                }
+                
+            }else{
+                console.log("No response from callback");
+            }
+        }); 
     }
 
     render() {
@@ -112,6 +152,26 @@ export default class AccountPage extends React.Component {
                         customStyle={styles.button}
                         text="Sign Out"
                         onPress={() => this.logout()}
+                    />
+                </View>
+                <View styles={styles.container}>
+                    <CustomButton
+                        customStyle={styles.deleteButton}
+                        text="Delete Account"
+                        onPress={() => 
+                            Alert.alert("Delete your account?", "This action is permanent", 
+                            [
+                                {
+                                    text: "Cancel",
+                                    style: "cancel",
+                                },
+                                {
+                                    text: "Proceed",
+                                    onPress: () => this.deleteAccount()
+                                },
+                            ],
+                            {cancelable: true}
+                        )}
                     />
                 </View>
             </>
@@ -139,6 +199,13 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#4E5255',
         borderColor: '#4E5255'
+    },
+    deleteButton: {
+        backgroundColor: 'red',
+        borderColor: 'black',
+        alignSelf: 'center',
+        marginBottom: 10,
+        
     },
 
 });
