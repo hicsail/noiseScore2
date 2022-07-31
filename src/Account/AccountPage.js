@@ -3,8 +3,9 @@
 * * * * * */
 // react
 import React from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, Text, View, Alert, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import email from 'react-native-email';
 // import { useNavigation }
 
 // node
@@ -100,6 +101,29 @@ export default class AccountPage extends React.Component {
         }.bind(this));
     }
 
+    sendDeleteEmail() {
+        const { navigate } = this.props.navigation;
+        AsyncStorage.getItem('userData', null).then(function (ret) {
+            if(ret){
+                var response = JSON.parse(ret);
+                var userEmail = response['user']['email'];
+                var username = response['user']['username'];
+                console.log(username);
+                console.log(userEmail);
+
+                const receiver = 'noisescoreapp@gmail.com';
+                email(receiver, {
+                    subject: 'Requesting email deletion',
+                    body: 'User ' + username + ' is withdrawing from the study and requesting their account to be deleted',
+                    checkCanOpen: false
+                }).catch((error) => {console.log('Failed to send email', error)});
+
+            }
+        }.bind(this))
+
+        
+    }
+
     deleteAccount(){
         const { navigate } =  this.props.navigation;
         AsyncStorage.getItem('userData',null).then(function (ret) {
@@ -121,7 +145,7 @@ export default class AccountPage extends React.Component {
                     console.log("Cannot delete root");
                     return;
                 } else {
-                    axios.delete('http://' + constants.IP_ADDRESS + '/api/users/' + userID, {headers: header})
+                    axios.delete('http://' + constants.IP_ADDRESS + '/api/users/' + userID, {headers:header})
                     .then(function () {
                         console.log("Account deleted");
                         navigate("UserLogin");
@@ -159,7 +183,7 @@ export default class AccountPage extends React.Component {
                         customStyle={styles.deleteButton}
                         text="Delete Account"
                         onPress={() => 
-                            Alert.alert("Delete your account?", "This action is permanent", 
+                            Alert.alert("Delete your account?", "You will be redirected to your mail app. After sending the email to us, it will take 1-2 business days to delete your account. Thank you for participating in the study!", 
                             [
                                 {
                                     text: "Cancel",
@@ -167,7 +191,7 @@ export default class AccountPage extends React.Component {
                                 },
                                 {
                                     text: "Proceed",
-                                    onPress: () => this.deleteAccount()
+                                    onPress: () => this.sendDeleteEmail()
                                 },
                             ],
                             {cancelable: true}
